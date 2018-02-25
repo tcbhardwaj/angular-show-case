@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BasicFormComponent } from './basic-form/basic-form.component';
+import { FormValidationComponent } from './form-validation/form-validation.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BasicFormComponent
+    BasicFormComponent,
+    FormValidationComponent
   ],
   imports: [
     FormsModule,
