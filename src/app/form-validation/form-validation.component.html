@@ -1,3 +1,62 @@
-<p>
-  form-validation works!
-</p>
+<div class="container" style="width: 500px">
+	<h3>Basic Validation Form</h3>
+	<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+		<div *ngIf="myForm.submitted">
+			<div class="alert alert-success">
+				<strong>Submitted Value</strong>
+				<div>Name: {{ myForm.value.name }}, Emp ID: {{
+					myForm.value.empid }} and Department: {{ myForm.value.dept }}</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="name">Name</label> 
+			<input type="text" name="name"
+				ngModel class="form-control" id="name" 
+				#name="ngModel" required pattern="[a-zA-Z][a-zA-Z ]+">
+				
+			<div *ngIf="name?.touched && name.errors" class="alert alert-danger">
+				<div *ngIf="name.errors?.required">
+					Name is required				
+				</div>
+				<div *ngIf="name.errors?.pattern">
+					Invalid name				
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="empid">Emp Id</label> 
+			<input type="text" name="empid"
+				ngModel #empid="ngModel" class="form-control" id="empid" 
+				required pattern="[0-9][0-9]+">
+				
+			<div *ngIf="empid?.touched && empid.errors" class="alert alert-danger">
+				<div *ngIf="empid.errors?.required">
+					Employee id is required				
+				</div>
+				<div *ngIf="empid.errors?.pattern">
+					Invalid employee id				
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="dept">Department</label> 
+			<select class="form-control"
+				name="dept" ngModel #dept="ngModel" id="dept" 
+				required>
+				<option value="" label="Select Department"></option>
+				<option *ngFor="let dept of departments" [value]="dept.name">{{dept.name}}</option>
+			</select>
+			
+			<div *ngIf="dept?.touched && dept.errors" class="alert alert-danger">
+				<div *ngIf="dept.errors?.required">
+					Department is required				
+				</div>
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-success" [disabled]="myForm.invalid">Submit</button>
+		<button type="reset" class="btn btn-default" (click)="reset(myForm)">Reset</button>
+	</form>
+</div>
