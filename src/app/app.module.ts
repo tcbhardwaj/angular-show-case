@@ -5,8 +5,10 @@ import {FormsModule} from '@angular/forms';
 import {BasicFormComponent} from './basic-form/basic-form.component';
 import {FormValidationComponent} from './form-validation/form-validation.component';
 import {Routes, RouterModule} from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 const ROUTES: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'basic-form', component: BasicFormComponent},
   {path: 'form-validation', component: FormValidationComponent}
 ];
@@ -16,7 +18,8 @@ const ROUTES: Routes = [
   declarations: [
     AppComponent,
     BasicFormComponent,
-    FormValidationComponent
+    FormValidationComponent,
+    HomeComponent
   ],
   imports: [
     FormsModule,
